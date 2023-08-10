@@ -41,6 +41,16 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+  const exportImagebutton = document.getElementById("exportImage");
+
+  exportImagebutton.addEventListener("click", exportImageFunction);
+
+  function exportImageFunction() {
+    viz.showExportImageDialog();
+  }
+});
+
 // 7. adding Ppt export button
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -51,4 +61,26 @@ document.addEventListener("DOMContentLoaded", function () {
   function exportPptFunction() {
     viz.showExportPowerPointDialog();
   }
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  function getRangeValues() {
+    const minValue = document.getElementById("minValue").value;
+    const maxValue = document.getElementById("maxValue").value;
+    console.log(minValue, maxValue);
+    const workbook = viz.getWorkbook();
+    const activeSheet = workbook.getActiveSheet();
+    const sheets = activeSheet.getWorksheets();
+    //   apply filtering
+    const sheetToFilter = sheets[0];
+    sheetToFilter
+      .applyRangeFilterAsync("SUM(Sales)", {
+        min: minValue,
+        max: maxValue,
+      })
+      .then(alert("Thanks Thano"));
+  }
+
+  const applyFilterButton = document.getElementById("applyFilter");
+  applyFilterButton.addEventListener("click", getRangeValues);
 });

@@ -7,9 +7,9 @@ body {
 h1 {
   font-family: cursive;
 }
-p {
-  margin-top: 100px;
-  margin-bottom: 100px;
-  margin-right: 100px;
-  margin-left: 100px;
+
+.classbox {
+  width: 5000px;
+  height: 100px;
+  background-color: gold;
 }
